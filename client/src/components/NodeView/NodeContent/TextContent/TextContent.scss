@@ -1,0 +1,20 @@
+@import '../../../../global/globalCssVariables';
+
+.textContent-wrapper {
+  padding: 20px;
+  white-space: pre-wrap;
+
+  .anchor {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .startAnchor {
+    background-color: #d4edda;
+  }
+
+  .selected {
+    background-color: pink;
+  }
+}

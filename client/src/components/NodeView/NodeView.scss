@@ -1,0 +1,26 @@
+@import '../../global/globalCssVariables';
+
+.nodeView {
+  .nodeView-json {
+    background-color: $selected-color;
+    overflow: hidden;
+    font-size: 12px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .nodeView-breadcrumb {
+    display: flex;
+    padding: 10px;
+    justify-content: left;
+    align-items: center;
+    border-bottom: $standard-border;
+    padding-left: 20px;
+  }
+
+  .nodeView-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

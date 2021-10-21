@@ -1,0 +1,27 @@
+@import '../../../../../../../global/globalCssVariables';
+
+.textContent-preview {
+  white-space: pre-wrap;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  font-size: 0.5em;
+  padding: 10px;
+  background-color: white;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.textContent-wrapper {
+  white-space: pre-wrap;
+
+  .anchor {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  .selected {
+    background-color: pink;
+  }
+}

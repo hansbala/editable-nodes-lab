@@ -1,0 +1,46 @@
+@import '../../../global/globalCssVariables';
+
+.linkMenu {
+  min-width: 350px;
+  padding: 20px;
+  height: fit-content;
+
+  .anchorItem {
+    cursor: pointer;
+    font-size: 0.7rem;
+    padding: 10px;
+  }
+
+  .linkItem {
+    user-select: none;
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: $secondary-background-color;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: $tertiary-background-color;
+    }
+  }
+
+  .linkTitle {
+    font-weight: 600;
+  }
+
+  .linkExplainer {
+    font-style: italic;
+  }
+
+  .anchorRelation {
+    font-size: 0.8rem;
+  }
+
+  .moreInfo {
+    width: fit-content;
+    height: fit-content;
+  }
+}

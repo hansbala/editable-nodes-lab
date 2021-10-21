@@ -1,0 +1,34 @@
+@import '../../global/globalCssVariables';
+
+.menu-container {
+  width: 200px;
+  height: fit-content;
+  background-color: $secondary-background-color;
+  border-radius: 5px;
+  position: absolute;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  .contextMenuItem {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      background-color: $selected-color;
+    }
+
+    .itemText {
+      font-size: 0.7rem;
+    }
+
+    .itemShortcut {
+      font-size: 0.7rem;
+      color: darkgrey;
+    }
+  }
+}

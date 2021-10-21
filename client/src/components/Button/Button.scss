@@ -1,0 +1,39 @@
+@import '../../global/globalCssVariables';
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  height: 70%;
+  font-size: 15px;
+  user-select: none;
+  // Font options
+  font-family: $header-font;
+
+  // Color
+  padding: 3px 15px;
+  border-radius: 5px;
+  gap: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+  margin: 0;
+
+  .icon {
+    font-size: 17px;
+  }
+}
+
+.whiteButton {
+  background-color: white;
+  &:hover {
+    background-color: darken(white, 3);
+  }
+}
+
+.nonWhiteButton {
+  background-color: $secondary-background-color;
+  &:hover {
+    background-color: darken($secondary-background-color, 10);
+  }
+}
