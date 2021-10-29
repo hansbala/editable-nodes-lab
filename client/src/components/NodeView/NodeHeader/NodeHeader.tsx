@@ -65,12 +65,37 @@ export const NodeHeader = (props: INodeHeaderProps) => {
 
   /* Method to update the node title */
   const handleUpdateTitle = async (title: string) => {
-    // TODO: Task 9
+    setTitle(title)
+    const nodeProperty: INodeProperty = makeINodeProperty('title', title)
+    const titleUpdateResp = await NodeGateway.updateNode(currentNode.nodeId, [
+      nodeProperty,
+    ])
+    if (!titleUpdateResp.success) {
+      setAlertIsOpen(true)
+      setAlertTitle('Title update failed')
+      setAlertMessage(titleUpdateResp.message)
+    }
+    setRefreshLinkList(!refreshLinkList)
   }
 
   /* Method called on title right click */
   const handleTitleRightClick = () => {
     // TODO: Task 10 - context menu
+    ContextMenuItems.splice(0, ContextMenuItems.length)
+    const menuItem: JSX.Element = (
+      <div
+        key={'titleRename'}
+        className="contextMenuItem"
+        onClick={(e) => {
+          ContextMenuItems.splice(0, ContextMenuItems.length)
+          setEditingTitle(true)
+        }}
+      >
+        <div className="itemTitle">Rename</div>
+        <div className="itemShortcut">ctrl + shift + R</div>
+      </div>
+    )
+    ContextMenuItems.push(menuItem)
   }
 
   /* useEffect which updates the title and editing state when the node is changed */
@@ -82,18 +107,47 @@ export const NodeHeader = (props: INodeHeaderProps) => {
   /* Node key handlers*/
   const nodeKeyHandlers = (e: KeyboardEvent) => {
     // TODO: Task 10 - keyboard shortcuts
+    switch (e.key) {
+      case 'Enter':
+        if (editingTitle == true) {
+          e.preventDefault()
+          setEditingTitle(false)
+        }
+        break
+      case 'Escape':
+        if (editingTitle == true) {
+          e.preventDefault()
+          setEditingTitle(false)
+        }
+        break
+    }
+
+    // ctrl + shift key events
+    if (e.shiftKey && e.ctrlKey) {
+      switch (e.key) {
+        case 'R':
+          e.preventDefault()
+          setEditingTitle(true)
+          break
+      }
+    }
   }
 
   // Trigger on node load or when editingTitle changes
   useEffect(() => {
     // TODO: Task 10 - keyboard shortcuts
+    document.addEventListener('keydown', nodeKeyHandlers)
   }, [editingTitle])
 
   const folder: boolean = currentNode.type === 'folder'
   const notRoot: boolean = currentNode.nodeId !== 'root'
   return (
     <div className="nodeView-info">
-      <div className="nodeView-title">
+      <div
+        className="nodeView-title"
+        onDoubleClick={(e) => setEditingTitle(true)}
+        onContextMenu={handleTitleRightClick}
+      >
         <EditableText
           text={title}
           editing={editingTitle}

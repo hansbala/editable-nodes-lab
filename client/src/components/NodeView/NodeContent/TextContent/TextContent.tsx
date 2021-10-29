@@ -3,6 +3,10 @@ import { Extent, IAnchor, INode } from '../../../../types'
 import './TextContent.scss'
 import { TextMenu } from './TextMenu'
 
+import { Remirror, EditorComponent, useRemirror } from '@remirror/react'
+import { RemirrorEventListenerProps } from '@remirror/core'
+import { BoldExtension, ItalicExtension } from 'remirror/extensions'
+
 /* You do not need to worry about these props, we
 are keeping them here fore later use!*/
 interface ITextContentProps {
@@ -27,7 +31,21 @@ export const TextContent = (props: ITextContentProps) => {
   // destructuring props array
   const { currentNode } = props
 
+  const { manager, state } = useRemirror({
+    content: currentNode.content,
+    selection: 'start',
+    stringHandler: 'html',
+    extensions: () => [new BoldExtension(), new ItalicExtension()],
+  })
+
   // TODO: Task 4, Task 5 & Task 7
 
-  return <div className="textContent-wrapper">{currentNode.content}</div>
+  return (
+    <div className="textContent-wrapper">
+      <Remirror manager={manager} initialContent={state}>
+        <TextMenu />
+        <EditorComponent />
+      </Remirror>
+    </div>
+  )
 }
